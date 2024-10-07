@@ -4,6 +4,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 from newspaper import Article
 from tqdm import tqdm
+from lxml_html_clean import clean_html
 
 #get links
 def get_news(name):
