@@ -1,2 +1,2 @@
 Trading Day,Date,Open,High,Low,Close,Volume,Dividends,Stock Splits,date_only,RollingMean,RollingStd,UpperBand1,LowerBand1,UpperBand2,LowerBand2,CCI_10,CCI_40,OBV,VPT,VPT_signal,VWAP,MFI_14,PP,R1,S1,R2,S2,R3,S3,CMF,%R,macd,macd_signal,macde_histogram,rsi,ADX,sma_5,sma_20,sma_50,sma_100,symbol,created_on
-1,2024-09-24 00:00:00+05:30,312.25,312.25,298.0,312.25,201776,0.0,0.0,2024-09-24,,,,,,,,,201776,,,312.25,,307.5,317.0,302.75,321.75,293.25,331.25,288.5,,,0.0,0.0,0.0,,,,,,,DEEPENR.NS,2025-01-27 10:49:00.679502
+1,2024-09-24 00:00:00+05:30,312.25,312.25,298.0,312.25,201776,0.0,0.0,2024-09-24,,,,,,,,,201776,,,312.25,,307.5,317.0,302.75,321.75,293.25,331.25,288.5,,,0.0,0.0,0.0,,,,,,,DEEPENR.NS,2025-01-28 10:47:58.096418
