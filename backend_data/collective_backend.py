@@ -118,7 +118,7 @@ def get_hist_data(result):
     # Get today's date
     date_today = date.today() + timedelta(days=1)
     # Fetch historical data from 2020-01-01 until today for daily intervals
-    historical = result.history(end=date_today, start="2020-01-01", period="1d")
+    historical = result.history(period="1y")
 
     # Remove days with zero trading volume (representing market holidays)
     historical = historical[historical['Volume'] != 0]
