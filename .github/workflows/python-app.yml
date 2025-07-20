@@ -1,38 +1,45 @@
 name: Update data
 
 on:
+  push:
+    branches:
+      - main                    # optional: run whenever main is pushed
   schedule:
-      - cron: "30 10 * * 1-5"
+    - cron: "30 10 * * 1-5"     # daily at 10:30 UTC Mon–Fri
+  workflow_dispatch:           # allows manual runs from UI/CLI :contentReference[oaicite:4]{index=4}
 
 jobs:
   run_and_push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout full history
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0         # fetch all commits, tags, and branches :contentReference[oaicite:5]{index=5}
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.11  # Change this to the appropriate Python version if needed
+          python-version: 3.11    # install Python 3.11 :contentReference[oaicite:6]{index=6}
 
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run collective_backend
         working-directory: backend_data
-        run: |
-          python collective_backend.py  # Replace this with the actual command to run your script
+        run: python collective_backend.py
 
-      - name: Merge remote changes and push
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # built‑in token with write access
         run: |
-          git config --global user.email "bhavesh.161201@gmail.com"
-          git config --global user.name "Bhavesh Jain"
-          
-          git fetch origin main
-          git merge origin/main
-          git add .
-          git commit -m "Data updated on `date +'%d-%m-%Y'`"
-          git push origin main
+          # Only commit if there are changes
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -am "Data updated on $(date +'%Y-%m-%d')"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
